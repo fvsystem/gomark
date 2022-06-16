@@ -34,6 +34,8 @@ We ask that when you use conventional commits when contributing. You can use a g
 npm run commit
 ```
 
+You can use this tool only if you have used npm install before.
+
 <p align="center">
 
 ## Starting to code
@@ -61,6 +63,8 @@ docker compose up --build -d && docker compose logs -f
 ```
 
 In this way, you will have a live reload environment with go running in a docker container. This docker composer file also have an API configured to be used during tests.
+
+Please, be advised that you must execute the command npm install before commit even using docker compose in order to pass through commit hook used in this repository.
 
 ---
 
