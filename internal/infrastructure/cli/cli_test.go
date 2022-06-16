@@ -1,25 +1,23 @@
 package cli
 
 import (
-	"io/ioutil"
-	"os"
-	"strings"
 	"testing"
 )
 
+type spyCreateTest struct {
+	called bool
+}
+
+func (n *spyCreateTest) CreateTest() {
+	n.called = true
+}
+
 func TestExecute(t *testing.T) {
-	rescueStdout := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
+	var createTest = &spyCreateTest{called: false}
 
-	Execute()
+	Execute(createTest)
 
-	w.Close()
-	out, _ := ioutil.ReadAll(r)
-	os.Stdout = rescueStdout
-
-	if !strings.Contains(string(out), "Executing cli") || !strings.Contains(string(out), "Creating tests") {
-		t.Errorf("Expected %s, got %s", "Executing cli", out)
+	if !createTest.called {
+		t.Errorf("Expected %t, got %t", true, createTest.called)
 	}
-	Execute()
 }

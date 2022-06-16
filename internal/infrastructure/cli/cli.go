@@ -2,14 +2,12 @@ package cli
 
 import (
 	"github.com/fvsystem/gomark/internal/adapter"
-	"github.com/fvsystem/gomark/internal/application/test/service"
 
 	"fmt"
 )
 
-func Execute() {
+func Execute(createTest adapter.TestCreator) {
 	fmt.Println("Executing cli")
 
-	var serviceCreateTest adapter.TestCreator = &service.CreateTestService{}
-	serviceCreateTest.CreateTest()
+	createTest.CreateTest()
 }
