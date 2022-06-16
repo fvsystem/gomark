@@ -46,4 +46,4 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/gradle@master
         env:
-          SNYK_TOKEN: ${{secrets.SNYK_AUTH}
+          SNYK_TOKEN: ${{secrets.SNYK_AUTH}}
