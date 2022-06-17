@@ -1,25 +1,49 @@
 package service
 
 import (
-	"io/ioutil"
-	"os"
-	"strings"
 	"testing"
+
+	"github.com/fvsystem/gomark/internal/adapter"
 )
 
-func TestCresteTest(t *testing.T) {
-	rescueStdout := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
+type fakeRequester struct {
+	called bool
+}
 
-	var createTest = &CreateTestService{}
-	createTest.CreateTest()
+func (n *fakeRequester) Get(url string) (adapter.Response, error) {
+	n.called = true
+	return adapter.Response{
+		StatusCode:    200,
+		ContentLength: 0,
+	}, nil
+}
 
-	w.Close()
-	out, _ := ioutil.ReadAll(r)
-	os.Stdout = rescueStdout
-
-	if !strings.Contains(string(out), "Creating tests") {
-		t.Errorf("Expected %s, got %s", "Creating tests", out)
+func TestCreateTestService_CreateTest(t *testing.T) {
+	type args struct {
+		requester adapter.Requester
+	}
+	var requester *fakeRequester = &fakeRequester{}
+	tests := []struct {
+		name string
+		c    *CreateTestService
+		args args
+	}{
+		{
+			name: "should return response",
+			c:    &CreateTestService{},
+			args: args{
+				requester: requester,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			requester.called = false
+			c := &CreateTestService{}
+			c.CreateTest(tt.args.requester)
+			if !requester.called {
+				t.Errorf("Expected %t, got %t", true, requester.called)
+			}
+		})
 	}
 }
