@@ -24,7 +24,7 @@ jobs:
       - run: go test ./...  -coverprofile=coverage.out
 
       - name: Upload coverage to Codecov
-        run: bash <(curl -s https://codecov.io/bash)
+      - run: bash <(curl -s https://codecov.io/bash)
   test:
     name: Test
     runs-on: ubuntu-latest
