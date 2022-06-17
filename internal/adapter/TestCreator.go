@@ -1,5 +1,7 @@
 package adapter
 
+import "github.com/fvsystem/gomark/internal/application/shared"
+
 type ResultItem struct {
 	Code          int
 	Time          int
@@ -23,5 +25,8 @@ type TestInterface interface {
 }
 
 type TestCreator interface {
-	CreateTest(requester Requester) TestResult
+	CreateTest(
+		requester Requester,
+		numberOfConnections int,
+		eventEmitter shared.EventEmitter)
 }

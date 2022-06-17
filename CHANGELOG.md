@@ -2,6 +2,23 @@
 ## [Unreleased]
 
 
+<a name="0.2"></a>
+## [0.2] - 2022-06-17
+### Docs
+- :memo: update changelog
+
+### Feat
+- :zap: create tests through parallel connections
+
+### Test
+- :test_tube: improve test coverage
+
+### Pull Requests
+- Merge pull request [#10](https://github.com/fvsystem/gomark/issues/10) from fvsystem/fix/ci
+- Merge pull request [#9](https://github.com/fvsystem/gomark/issues/9) from fvsystem/development
+- Merge pull request [#7](https://github.com/fvsystem/gomark/issues/7) from fvsystem/development
+
+
 <a name="0.1.2"></a>
 ## [0.1.2] - 2022-06-17
 ### Docs
@@ -48,6 +65,7 @@
 - Merge pull request [#4](https://github.com/fvsystem/gomark/issues/4) from fvsystem/feature/createenvironment
 
 
-[Unreleased]: https://github.com/fvsystem/gomark/compare/0.1.2...HEAD
+[Unreleased]: https://github.com/fvsystem/gomark/compare/0.2...HEAD
+[0.2]: https://github.com/fvsystem/gomark/compare/0.1.2...0.2
 [0.1.2]: https://github.com/fvsystem/gomark/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/fvsystem/gomark/compare/0.1...0.1.1
