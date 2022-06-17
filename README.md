@@ -66,6 +66,10 @@ In this way, you will have a live reload environment with go running in a docker
 
 Please, be advised that you must execute the command npm install before commit even using docker compose in order to pass through commit hook used in this repository.
 
+## Usage
+
+For now, the gomark app only send some request to localhost port 8080 for a few seconds and does not show on log.
+
 ---
 
 <p align="center">
