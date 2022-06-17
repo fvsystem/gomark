@@ -59,7 +59,7 @@ func (t *TestEntity) Start() {
 	}
 }
 
-func (t *TestEntity) Stop() adapter.TestResult {
+func (t *TestEntity) Stop(registerResults func(testResults adapter.TestResult)) {
 	t.start <- false
 	if len(t.testResult.Items) == 0 {
 		t.testResult.MaxLatency = 0
@@ -68,7 +68,7 @@ func (t *TestEntity) Stop() adapter.TestResult {
 		t.testResult.ContentLengthSent = 0
 		t.testResult.NumberOfRequests = 0
 		t.testResult.StandardDeviation = 0
-		return t.testResult
+		registerResults(t.testResult)
 	}
 	var max int = t.testResult.Items[0].Time
 	var min int = t.testResult.Items[0].Time
@@ -112,5 +112,5 @@ func (t *TestEntity) Stop() adapter.TestResult {
 	} else {
 		t.testResult.StandardDeviation = 0
 	}
-	return t.testResult
+	registerResults(t.testResult)
 }
