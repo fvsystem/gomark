@@ -2,12 +2,11 @@ package cli
 
 import (
 	"github.com/fvsystem/gomark/internal/adapter"
-
-	"fmt"
 )
 
-func Execute(createTest adapter.TestCreator) {
-	fmt.Println("Executing cli")
+type CliExecuter struct{}
 
-	createTest.CreateTest()
+func (c *CliExecuter) Execute(createTest adapter.TestCreator, requester adapter.Requester) {
+
+	createTest.CreateTest(requester)
 }
