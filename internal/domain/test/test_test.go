@@ -3,12 +3,11 @@ package test
 import (
 	"errors"
 	"fmt"
+	"reflect"
+	"testing"
 	"time"
 
 	"github.com/fvsystem/gomark/internal/adapter"
-
-	"reflect"
-	"testing"
 )
 
 type mockHTTPRequester struct {
@@ -174,6 +173,52 @@ func TestTestEntity_Start(t *testing.T) {
 
 			if len(tr.testResult.Items) == 0 && !requestWithError.called {
 				t.Errorf("TestEntity.Start() = %v, want %v", len(tr.testResult.Items), ">0")
+			}
+		})
+	}
+}
+
+func TestTestEntity_Init(t *testing.T) {
+	type fields struct {
+		port       int
+		host       string
+		start      chan bool
+		testResult adapter.TestResult
+		requester  adapter.Requester
+	}
+	type args struct {
+		requester adapter.Requester
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+	}{
+		{
+			name: "should init test",
+			fields: fields{
+				port:       8080,
+				host:       "localhost",
+				start:      make(chan bool),
+				testResult: adapter.TestResult{},
+			},
+			args: args{
+				requester: &mockHTTPRequester{},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			tr := &TestEntity{
+				port:       tt.fields.port,
+				host:       tt.fields.host,
+				start:      tt.fields.start,
+				testResult: tt.fields.testResult,
+				requester:  tt.fields.requester,
+			}
+			tr.Init(tt.args.requester)
+			if tr.port != 8080 {
+				t.Errorf("TestEntity.Init() = %v, want %v", tr.port, 8080)
 			}
 		})
 	}
