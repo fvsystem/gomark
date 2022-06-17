@@ -3,7 +3,6 @@ package test
 import (
 	"errors"
 	"fmt"
-	"reflect"
 	"testing"
 	"time"
 
@@ -96,8 +95,14 @@ func TestTestEntity_Stop(t *testing.T) {
 				testResult: tt.fields.testResult,
 			}
 			go fakeStart(tt.fields.start)
-			if got := tr.Stop(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("TestEntity.Stop() = %v, want %v", got, tt.want)
+			called := false
+			registerResults := func(result adapter.TestResult) {
+				called = true
+			}
+			tr.Stop(registerResults)
+
+			if !called {
+				t.Errorf("registerResults not called %v, want %v", called, true)
 			}
 		})
 	}
