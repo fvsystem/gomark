@@ -17,9 +17,10 @@ func NewEventEmitter() *EventEmitterImpl {
 }
 
 func (e *EventEmitterImpl) EmitEvent(event Event) {
+
 	if listeners, ok := e.listeners[event.Name]; ok {
 		for _, listener := range listeners {
-			listener(event)
+			go listener(event)
 		}
 	}
 }

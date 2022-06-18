@@ -28,7 +28,7 @@ var registerResults = func(adapter.TestResult) {
 func TestHandlers(t *testing.T) {
 	startHandler := NewHandlerStartTest(&fakeRequester{})
 	stopHandler := NewHandlerStopTest(startHandler.Test, registerResults)
-	startHandler.Run(event.StartTestEvent)
+	go startHandler.Run(event.StartTestEvent)
 	stopHandler.Run(event.StopTestEvent)
 	if !called {
 		t.Error("Handler was not called")

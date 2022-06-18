@@ -28,5 +28,8 @@ type TestCreator interface {
 	CreateTest(
 		requester Requester,
 		numberOfConnections int,
-		eventEmitter shared.EventEmitter)
+		eventEmitter shared.EventEmitter,
+		handlerResultsReturned Handler,
+		handlerResultsTransformed Handler,
+	)
 }

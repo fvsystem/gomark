@@ -11,7 +11,9 @@ func (c *CliExecuter) Execute(
 	createTest adapter.TestCreator,
 	requester adapter.Requester,
 	eventEmitter shared.EventEmitter,
+	handlerResultsReturned adapter.Handler,
+	handlerResultsTransformed adapter.Handler,
 ) {
 
-	createTest.CreateTest(requester, 2, eventEmitter)
+	createTest.CreateTest(requester, 2, eventEmitter, handlerResultsReturned, handlerResultsTransformed)
 }
