@@ -7,5 +7,7 @@ type Executer interface {
 		testCreator TestCreator,
 		requester Requester,
 		eventEmitter shared.EventEmitter,
+		handlerResultsReturned Handler,
+		handlerResultsTransformed Handler,
 	)
 }

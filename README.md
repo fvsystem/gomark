@@ -68,7 +68,7 @@ Please, be advised that you must execute the command npm install before commit e
 
 ## Usage
 
-For now, the gomark app only send some requests throw 2 parallel connections to localhost port 8080 for a few seconds and does not show on log.
+For now, the gomark app only send some requests throw 2 parallel connections to localhost port 8080 for a few seconds and show data in a Json file results.json. This result is not ready for final report.
 
 ---
 

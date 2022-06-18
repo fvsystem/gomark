@@ -14,6 +14,8 @@ type spyCreateTest struct {
 func (n *spyCreateTest) CreateTest(requester adapter.Requester,
 	numberOfConnections int,
 	eventEmitter shared.EventEmitter,
+	handlerResultsReturned adapter.Handler,
+	handlerResultsTransformed adapter.Handler,
 ) {
 	n.called = true
 }
@@ -38,12 +40,20 @@ func (e *FakeEventEmitter) RemoveAllListeners(event string) {
 
 }
 
+type FakeHandler struct {
+}
+
+func (e *FakeHandler) Run(event shared.Event) {
+}
+
+var fakeHandler adapter.Handler = &FakeHandler{}
+
 func TestExecute(t *testing.T) {
 	var createTest = &spyCreateTest{called: false}
 	var cliExecuter adapter.Executer = &CliExecuter{}
 	var eventEmitter = &FakeEventEmitter{}
 
-	cliExecuter.Execute(createTest, &fakeRequester{}, eventEmitter)
+	cliExecuter.Execute(createTest, &fakeRequester{}, eventEmitter, fakeHandler, fakeHandler)
 
 	if !createTest.called {
 		t.Errorf("Expected %t, got %t", true, createTest.called)

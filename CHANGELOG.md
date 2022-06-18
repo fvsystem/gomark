@@ -2,6 +2,23 @@
 ## [Unreleased]
 
 
+<a name="0.3"></a>
+## [0.3] - 2022-06-17
+### Docs
+- :memo: update changelog
+
+### Feat
+- :sparkles: create a report make which creates a simple json file
+
+### Test
+- :test_tube: improve test coverage
+- :test_tube: improve test coverage
+
+### Pull Requests
+- Merge pull request [#12](https://github.com/fvsystem/gomark/issues/12) from fvsystem/feature/createmultitests
+- Merge pull request [#11](https://github.com/fvsystem/gomark/issues/11) from fvsystem/development
+
+
 <a name="0.2"></a>
 ## [0.2] - 2022-06-17
 ### Docs
@@ -65,7 +82,8 @@
 - Merge pull request [#4](https://github.com/fvsystem/gomark/issues/4) from fvsystem/feature/createenvironment
 
 
-[Unreleased]: https://github.com/fvsystem/gomark/compare/0.2...HEAD
+[Unreleased]: https://github.com/fvsystem/gomark/compare/0.3...HEAD
+[0.3]: https://github.com/fvsystem/gomark/compare/0.2...0.3
 [0.2]: https://github.com/fvsystem/gomark/compare/0.1.2...0.2
 [0.1.2]: https://github.com/fvsystem/gomark/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/fvsystem/gomark/compare/0.1...0.1.1

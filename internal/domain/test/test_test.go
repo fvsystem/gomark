@@ -2,7 +2,6 @@ package test
 
 import (
 	"errors"
-	"fmt"
 	"testing"
 	"time"
 
@@ -173,8 +172,6 @@ func TestTestEntity_Start(t *testing.T) {
 			time.Sleep(200 * time.Millisecond)
 
 			tr.start <- false
-
-			fmt.Print("called", requestWithError.called)
 
 			if len(tr.testResult.Items) == 0 && !requestWithError.called {
 				t.Errorf("TestEntity.Start() = %v, want %v", len(tr.testResult.Items), ">0")
