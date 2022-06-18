@@ -19,5 +19,5 @@ func NewHandlerStartTest(requester adapter.Requester) *HandlerStartTest {
 }
 
 func (h *HandlerStartTest) Run(event shared.Event) {
-	go h.Test.Start()
+	h.Test.Start()
 }

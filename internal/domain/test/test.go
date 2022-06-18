@@ -12,6 +12,7 @@ type TestEntity struct {
 	port       int
 	host       string
 	start      chan bool
+	path       string
 	testResult adapter.TestResult
 	requester  adapter.Requester
 }
@@ -24,6 +25,7 @@ func (t *TestEntity) Init(requester adapter.Requester) {
 	t.host = "http://localhost"
 	t.port = 8080
 	t.requester = requester
+	t.path = "/test"
 }
 
 func (t *TestEntity) Start() {
@@ -31,7 +33,7 @@ func (t *TestEntity) Start() {
 	for shouldContinue {
 		start := time.Now()
 		var errHappened bool = false
-		response, err := t.requester.Get(t.host + ":" + strconv.Itoa(t.port))
+		response, err := t.requester.Get(t.host + ":" + strconv.Itoa(t.port) + t.path)
 		if err != nil {
 			select {
 			case shouldContinue = <-t.start:
@@ -69,6 +71,7 @@ func (t *TestEntity) Stop(registerResults func(testResults adapter.TestResult)) 
 		t.testResult.NumberOfRequests = 0
 		t.testResult.StandardDeviation = 0
 		registerResults(t.testResult)
+		return
 	}
 	var max int = t.testResult.Items[0].Time
 	var min int = t.testResult.Items[0].Time
