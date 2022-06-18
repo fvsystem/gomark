@@ -8,8 +8,14 @@ import (
 type LocalStorageService struct {
 }
 
+var CreateFile = os.Create
+
+var OpenFile = os.Open
+
+var RemoveFile = os.Remove
+
 func (l *LocalStorageService) Save(bytes []byte, path string) error {
-	file, err := os.Create(path)
+	file, err := CreateFile(path)
 	if err != nil {
 		return err
 	}
@@ -21,7 +27,7 @@ func (l *LocalStorageService) Save(bytes []byte, path string) error {
 }
 
 func (l *LocalStorageService) Load(path string) ([]byte, error) {
-	file, err := os.Open(path)
+	file, err := OpenFile(path)
 	if err != nil {
 		return nil, err
 	}
@@ -32,5 +38,5 @@ func (l *LocalStorageService) Load(path string) ([]byte, error) {
 }
 
 func (l *LocalStorageService) Delete(path string) error {
-	return os.Remove(path)
+	return RemoveFile(path)
 }

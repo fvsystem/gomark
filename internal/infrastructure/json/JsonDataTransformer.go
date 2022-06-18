@@ -9,8 +9,10 @@ import (
 type JsonDataTransformer struct {
 }
 
+var JsonTransformer = json.Marshal
+
 func (j *JsonDataTransformer) Transform(data []adapter.TestResult) (interface{}, error) {
-	dataJson, err := json.Marshal(data)
+	dataJson, err := JsonTransformer(data)
 
 	if err != nil {
 		return nil, err

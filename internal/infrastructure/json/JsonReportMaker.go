@@ -11,8 +11,10 @@ type JsonReportMaker struct {
 	storage adapter.Storage
 }
 
+var GetPath = os.Getwd
+
 func (j *JsonReportMaker) MakeReport(data interface{}) error {
-	path, err := os.Getwd()
+	path, err := GetPath()
 	if err != nil {
 		return err
 	}

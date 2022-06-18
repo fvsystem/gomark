@@ -80,17 +80,18 @@ func (t *TestEntity) Stop(registerResults func(testResults adapter.TestResult)) 
 	var lengthWithoutErrors int = 0
 
 	for _, item := range t.testResult.Items {
-		if !item.Err {
-			if item.Time > max {
-				max = item.Time
-			}
-			if item.Time < min {
-				min = item.Time
-			}
-			sum += item.Time
-			sumContentLength += item.ContentLength
-			lengthWithoutErrors++
+		if item.Err {
+			continue
 		}
+		if item.Time > max {
+			max = item.Time
+		}
+		if item.Time < min {
+			min = item.Time
+		}
+		sum += item.Time
+		sumContentLength += item.ContentLength
+		lengthWithoutErrors++
 	}
 
 	t.testResult.MaxLatency = max
@@ -106,9 +107,10 @@ func (t *TestEntity) Stop(registerResults func(testResults adapter.TestResult)) 
 	var sumDeviation int = 0
 
 	for _, item := range t.testResult.Items {
-		if !item.Err {
-			sumDeviation += (item.Time - t.testResult.AverageLatency) * (item.Time - t.testResult.AverageLatency)
+		if item.Err {
+			continue
 		}
+		sumDeviation += (item.Time - t.testResult.AverageLatency) * (item.Time - t.testResult.AverageLatency)
 	}
 	if sumDeviation > 0 {
 		t.testResult.StandardDeviation = int(math.Sqrt(float64(sumDeviation / lengthWithoutErrors)))
