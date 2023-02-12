@@ -23,7 +23,7 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.20"
   },
   "config": {
     "commitizen": {
